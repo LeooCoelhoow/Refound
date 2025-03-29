@@ -126,7 +126,7 @@ function updateTotals() {
       value = parseFloat(value)
 
       // Verifica se é um número válido
-      if (isNan(value)) {
+      if (isNaN(value)) {
         return alert("O valor não parece ser um número. Não foi possível calcular o total")
       }
 
@@ -145,7 +145,7 @@ function updateTotals() {
     expensesTotal.innerHTML = ""
 
     // Adiciona o símbolo da moeda e o valor total formatado
-    expensesTotal.append(symbolBRL, total)
+    expensesTotal.append(symbolBRL, total) 
 
   } catch (error) {
     alert("Não foi possível atualizar os totais")
@@ -157,6 +157,15 @@ function updateTotals() {
 expenseList.addEventListener("click", function (event) {
   // Verifica se o elemento clicado é o ícone
   if(event.target.classList.contains("remove-icon")) {
-    console.log(event)
+    // console.log(event)
+
+    // Obtém a li pai do elemento clicado
+    const item = event.target.closest(".expense")
+
+    // Remove o item da lista
+    item.remove()
   }
+
+  // Atualiza os totais
+  updateTotals()
 })
